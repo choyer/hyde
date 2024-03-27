@@ -1,3 +1,7 @@
+# Introduction
+
+This is my personalized fork of [Zola's port of the Hyde theme](https://github.com/getzola/hyde) originally created by [Mark Otto](https://github.com/mdo) as a [Poole Jekyll Theme](https://github.com/poole/hyde).
+
 # hyde
 Hyde is a brazen two-column [Zola](https://github.com/getzola/zola) based on the Jekyll theme of the same name that pairs a prominent sidebar with uncomplicated content.
 
