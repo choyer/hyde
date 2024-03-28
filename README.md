@@ -10,6 +10,7 @@ Hyde is a brazen two-column [Zola](https://github.com/getzola/zola) based on the
 ## Contents
 
 - [Installation](#installation)
+- [Differentia](#differentia)
 - [Options](#options)
   - [Sidebar menu](#sidebar-menu)
   - [Sticky sidebar content](#sticky-sidebar-content)
@@ -27,6 +28,27 @@ and then enable it in your `config.toml`:
 
 ```toml
 theme = "hyde"
+```
+
+## Differentia
+
+Main differences from the original [Zola port](https://github.com/getzola/hyde) include:
+
+- Sidebar navigation call-out of current active page (like the original Jekyll Hyde theme)
+- Ability to define sidebar subtitle via `hyde_sidebar_subtitle = ""` in main `config.toml`
+- Ability to define sidebar subtext via `hyde_sidebar_subtext = ""` in main `config.toml`
+- Ability to define sidebar 3rd party social profile links via `hyde_social_links = []` in main `config.toml` ([see example](#social-links-example))
+- Ability to show sidebar copyright via `hyde_copyright = true` and define copyright license via `hyde_copyright_license = "licensed under CC BY 4.0"` 
+
+### Social Links example
+
+3rd party social profile links, displayed via icons within the Sidebar, can be defined in the sites `config.toml` via:
+
+```toml
+[extra]
+hyde_social_links = [
+    {url = "https://github.com/choyer", name = "github"},
+]
 ```
 
 ## Options
