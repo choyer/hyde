@@ -1,5 +1,5 @@
 > [!NOTE]
-> This is my personalized fork of [Zola's port of the Hyde theme](https://github.com/getzola/hyde) originally created by [Mark Otto](https://github.com/mdo) as a [Poole Jekyll Theme](https://github.com/poole/hyde). You're probably better off using the official Zola port version.
+> This is my personalized fork of [Zola's port of the Hyde theme](https://github.com/getzola/hyde) originally created by [Mark Otto](https://github.com/mdo) as a [Poole Jekyll Theme](https://github.com/poole/hyde). See the changes I've made in the [Differentia](#differentia) section below.
 
 # hyde
 Hyde is a brazen two-column [Zola](https://github.com/getzola/zola) based on the Jekyll theme of the same name that pairs a prominent sidebar with uncomplicated content.
@@ -38,7 +38,7 @@ Main differences from the original [Zola port](https://github.com/getzola/hyde) 
 - Ability to define sidebar subtitle via `hyde_sidebar_subtitle = ""` in main `config.toml`
 - Ability to define sidebar subtext via `hyde_sidebar_subtext = ""` in main `config.toml`
 - Ability to define sidebar 3rd party social profile links via `hyde_social_links = []` in main `config.toml` ([see example](#social-links-example))
-- Ability to show sidebar copyright via `hyde_copyright = true` and define copyright license via `hyde_copyright_license = "licensed under CC BY 4.0"` 
+- Ability to show sidebar copyright via `hyde_copyright = true`, define copyright license via `hyde_copyright_license = "licensed under CC BY 4.0"` and define copyright license link via `hyde_copyright_license_link = "https://creativecommons.org/licenses/by/4.0/"`
 
 ### Social Links example
 

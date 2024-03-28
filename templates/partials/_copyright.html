@@ -1,0 +1,9 @@
+{% if config.extra.hyde_copyright %}
+<p class="copyright">&copy;{{ now() | date(format="%Y") }}. 
+    {% if config.extra.hyde_copyright_license_text and config.extra.hyde_copyright_license_link %}
+        <a href="{{ config.extra.hyde_copyright_license_link }}" target="_blank">{{ config.extra.hyde_copyright_license_text }}</a>
+    {% elif config.extra.hyde_copyright_license_text %}
+        {{ config.extra.hyde_copyright_license_text }}
+    {% endif %}
+    </p>
+{% endif %}
