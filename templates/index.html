@@ -45,7 +45,8 @@
                         {% endblock sidebar_nav %}
                     </ul>
 
-                    {% if config.extra.hyde_copyright %}<p>&copy;{{ now() | date(format="%Y") }}. {{ config.extra.hyde_copyright_license }}</p>{% endif %}
+                    <!-- Copyright-->
+                    {% if config.extra.hyde_copyright %}<p>&copy;{{ now() | date(format="%Y") }}. {% if config.extra.hyde_copyright_license %} {{ config.extra.hyde_copyright_license }}{% endif %}</p>{% endif %}
                 </div>
             </div>
         {% endblock sidebar %}
