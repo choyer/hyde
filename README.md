@@ -35,6 +35,8 @@ theme = "hyde"
 Main differences from the original [Zola port](https://github.com/getzola/hyde) include:
 
 - Sidebar navigation call-out of current active page (like the original Jekyll Hyde theme)
+- Combined styles into a single stylesheet
+- locally hosted webfonts
 - Ability to define sidebar subtitle via `hyde_sidebar_subtitle = ""` in main `config.toml`
 - Ability to define sidebar subtext via `hyde_sidebar_subtext = ""` in main `config.toml`
 - Ability to define sidebar 3rd party social profile links via `hyde_social_links = []` in main `config.toml` ([see example](#social-links-example))
