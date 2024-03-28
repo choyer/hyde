@@ -31,8 +31,11 @@
                     <div class="sidebar-about">
                         {% block sidebar_about %}
                             <a href="{{ config.base_url }}"><h1>{{ config.title }}</h1></a>
-                            {% if config.description %}
-                            <p class="lead">{{config.description}}</p>
+                            {% if config.extra.hyde_sidebar_subtitle %}
+                            <p class="lead">{{config.extra.hyde_sidebar_subtitle}}</p>
+                            {% endif %}
+                            {% if config.extra.hyde_sidebar_subtext %}
+                            <p class="lead">{{config.extra.hyde_sidebar_subtext}}</p>
                             {% endif %}
                         {% endblock sidebar_about %}
                     </div>
