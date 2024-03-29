@@ -1,3 +1,4 @@
+{% import "macros/social.html" as social %}
 <!DOCTYPE html>
 <html lang="{{ lang }}">
     <head>
@@ -44,6 +45,15 @@
                         <li class="sidebar-nav-item {% if current_path and current_path == link.url %} active{% endif %}"><a href="{{link.url}}">{{link.name}}</a></li>
                         {% endfor %}
                         {% endblock sidebar_nav %}
+                    </ul>
+
+                    <!-- Social Profiles-->                    
+                    <ul class="sidebar-social">
+                        {% block sidebar_social %}
+                        {% for social_profile in config.extra.hyde_social_links %}
+                        <li class="social-icon">{{ social::profile_link(social_service=social_profile.name, social_url=social_profile.url) }}</li>
+                        {% endfor %}
+                        {% endblock sidebar_social %}
                     </ul>
 
                     <!-- Copyright-->

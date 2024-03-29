@@ -1,0 +1,48 @@
+/*
+ *                         __              __   
+ *   ____ _   _____  _____/ /_  __  ______/ /__ 
+ *  / __ \ | / / _ \/ ___/ __ \/ / / / __  / _ \
+ * / /_/ / |/ /  __/ /  / / / / /_/ / /_/ /  __/
+ * \____/|___/\___/_/  /_/ /_/\__, /\__,_/\___/ 
+ *                           /____/             
+ *
+ * Personal overrides & additions for @mdo hyde template [https://github.com/poole/hyde]
+ * Designed, built, and released under MIT license by @choyer. Learn more at
+ * https://github.com/choyer/hyde.
+ */
+
+
+/*
+HEX colour to SVG filter
+Credit: https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/62880368#62880368
+
+Example Usage:
+.icon-green {
+  @include recolor(#00fa86, 0.8);
+}
+*/
+@mixin recolor($color: #000, $opacity: 1) {
+  $r: red($color) / 255;
+  $g: green($color) / 255;
+  $b: blue($color) / 255;
+  $a: $opacity;
+
+  // grayscale fallback if SVG from data url is not supported
+  $lightness: lightness($color);
+  filter: saturate(0%) brightness(0%) invert($lightness) opacity($opacity);
+
+  // color filter
+  $svg-filter-id: "recolor";
+  filter: url('data:image/svg+xml;utf8,\
+    <svg xmlns="http://www.w3.org/2000/svg">\
+      <filter id="#{$svg-filter-id}" color-interpolation-filters="sRGB">\
+        <feColorMatrix type="matrix" values="\
+          0 0 0 0 #{$r}\
+          0 0 0 0 #{$g}\
+          0 0 0 0 #{$b}\
+          0 0 0 #{$a} 0\
+        "/>\
+      </filter>\
+    </svg>\
+    ##{$svg-filter-id}');
+}

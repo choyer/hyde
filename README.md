@@ -36,7 +36,7 @@ Main differences from the original [Zola port](https://github.com/getzola/hyde) 
 
 - Sidebar navigation call-out of current active page (like the original Jekyll Hyde theme)
 - Combined styles into a single stylesheet
-- locally hosted webfonts
+- Privacy focused no tracking or CDN references. Locally hosted webfonts
 - Ability to define sidebar subtitle via `hyde_sidebar_subtitle = ""` in main `config.toml`
 - Ability to define sidebar subtext via `hyde_sidebar_subtext = ""` in main `config.toml`
 - Ability to define sidebar 3rd party social profile links via `hyde_social_links = []` in main `config.toml` ([see example](#social-links-example))
@@ -44,14 +44,17 @@ Main differences from the original [Zola port](https://github.com/getzola/hyde) 
 
 ### Social Links example
 
-3rd party social profile links, displayed via icons within the Sidebar, can be defined in the sites `config.toml` via:
+3rd party social profile links, displayed using [Simple Icons](https://simpleicons.org/) within the Sidebar, can be defined in the sites `config.toml` via:
 
 ```toml
 [extra]
 hyde_social_links = [
-    {url = "https://github.com/choyer", name = "github"},
+    {name = "github", url = "https://github.com/choyer"},
 ]
 ```
+
+> [!TIP]
+> I've included some of the most popular social service icons. To add other simply download additional ones from the [Simple Icons ](https://simpleicons.org/) website and place them in the themes `/static/simple-icons/` directory. The name used in the config file should match the svg filename (without the .svg).
 
 ## Options
 

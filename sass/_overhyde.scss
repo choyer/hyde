@@ -19,3 +19,31 @@
 .sidebar .copyright {
 	font-size: 12px;
  }
+
+.sidebar-social {
+	display: flex;
+	list-style: none;
+	padding-left: 0;
+ }
+
+.sidebar-social li {
+	margin: 0 10px;
+}
+
+.social-icon a {
+	@include recolor(#fff, 0.5); // mixin to colour svg based on hex
+}
+
+.social-icon a:hover {
+	@include recolor(#fff, 0.9); // mixin to colour svg based on hex
+}
+
+
+ /*
+ * Additional Themes
+ *
+ * Additional optional themes to color the sidebar and links
+ * within blog posts. To use, add the class of your choosing to the `body`.
+ */
+
+/* Base16 (http://chriskempson.github.io/base16/#default) */
