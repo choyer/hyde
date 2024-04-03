@@ -1,4 +1,4 @@
 {% macro profile_link(social_service, social_url) %}
     {% set icon_src_url = get_url(path="/simple-icons/" ~ social_service ~ ".svg") %}
-    <a href="{{social_url | safe}}"><img height="32" width="32" src="{{ icon_src_url }}" /></a>
+    <a rel="me" href="{{social_url | safe}}"><img height="32" width="32" src="{{ icon_src_url }}" /></a>
 {% endmacro input %}
