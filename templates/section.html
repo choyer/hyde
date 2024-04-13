@@ -1,0 +1,7 @@
+{% extends "index.html" %}
+
+{% block content %}
+    {% if section.title %}<h1 class="section-title">{{ section.title }}</h1>{% endif %}
+    {{ section.content | safe }}
+{% endblock content %}
+

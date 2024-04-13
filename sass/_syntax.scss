@@ -1,0 +1,130 @@
+/*
+ * Syntax Custom Styling Overrides
+ */
+ 
+/* Language header pre-fix label */
+$dlang-prefix: "Language:";
+
+/* sass map of syntax languages and associated display labels */
+$dlangs: (	"sh":"BASH",
+ 			"bash":"BASH",
+ 			"xml":"XML",
+ 			"awk":"AWK",
+ 			"csv":"CSV",
+ 			"tsv":"TSV",
+ 			"c":"C",
+ 			"h":"C",
+ 			"dart":"DART",
+ 			"cmake":"CMAKE",
+ 			"css":"CSS",
+ 			"sass":"SASS / SCSS",
+ 			"html":"HTML",
+ 			"htmx":"HTMX",
+ 			"js":"JAVASCRIPT",
+ 			"go":"GO",
+ 			"python":"PYTHON",
+ 			"rs":"RUST",
+ 			"ruby":"RUBY",
+ 			"diff":"DIFF",
+ 			"json":"JSON",
+ 			"toml":"TOML",
+ 			"yaml":"YAML",
+ 			"php":"PHP",
+ 			"md":"MARKDOWN",
+ 			"re":"REGULAR EXPRESSION",
+ 			"sql":"SQL"
+ 		  );
+
+/*
+ * Fonts for syntax hilighting only
+ */
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../webfonts/SourceCodePro-Regular.otf.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../webfonts/SourceCodePro-It.otf.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../SourceCodePro-Bold.otf.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../webfonts/SourceCodePro-BoldIt.otf.woff2') format('woff2');
+}
+
+/*
+ * The pre tag that rules them all
+ */
+pre {
+	font-family: 'Source Code Pro';
+	font-size: .75rem;
+	padding: 1rem;
+	overflow: auto;
+	border-left: 5px solid rgba(172, 65, 66, 1);
+}
+
+ /* Header for all syntax highlighting 
+  * Content: must be defined for each language individually (missing content = no header for code block)
+  */
+pre[class^="language-"]::before {
+	display: block;
+	text-align: center;
+	margin-bottom: 1.5em;
+	margin-top: -1rem;
+	margin-left: -2rem;
+	margin-right: -1rem;
+	background-color: rgba(172, 65, 66, 1);
+	color: rgba(255,255,255, .7);
+}
+
+ /* Header Label 
+  * Generated from the dlangs map above
+  * lc = language code from syntax highlighter
+  * dl = display label for code language
+  */
+@each $lc, $dl in $dlangs {
+	pre[data-lang=#{$lc}]::before {
+		content: "#{$dlang-prefix} #{$dl}";
+	}
+}
+
+// The line numbers already provide some kind of left/right padding
+pre[data-linenos] {
+	padding: 1rem 0;
+}
+pre table td {
+	padding: 0;
+}
+// The line number cells
+pre table td:nth-of-type(1) {
+	text-align: center;
+	user-select: none;
+}
+pre mark {
+	// If you want your highlights to take the full width.
+	display: block;
+	// The default background colour of a mark is bright yellow
+	background-color: rgba(254, 252, 232, 0.9);
+}
+pre table {
+	width: 100%;
+	border-collapse: collapse;
+}

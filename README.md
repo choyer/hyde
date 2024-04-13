@@ -54,7 +54,7 @@ hyde_social_links = [
 ```
 
 > [!TIP]
-> I've included some of the most popular social service icons. To add other simply download additional ones from the [Simple Icons ](https://simpleicons.org/) website and place them in the themes `/static/simple-icons/` directory. The name used in the config file should match the svg filename (without the .svg).
+> I've included some of the most popular social service icons. To add others simply download additional icons from the [Simple Icons ](https://simpleicons.org/) website and place them in the themes `/static/simple-icons/` directory. The name used in the config file should match the svg filename (without the .svg).
 
 ## Options
 

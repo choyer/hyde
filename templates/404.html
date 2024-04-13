@@ -1,8 +1,11 @@
-{% extends "index.html" %}
+{% extends "baseof.html" %}
 
-{% block content %}
-<div class="post">
-  <h1 class="post-title">404: Page not found</h1>
-  <p class="lead">Sorry, we've misplaced that URL or it's pointing to something that doesn't exist. <a href={{ config.base_url }}>Head back home</a> to try finding it again.</p>
+{% block body %}
+<div class="content container">
+  <div class="section">
+    <h1 class="post-title">404: Page not found</h1>
+    <p class="lead">Sorry, it's not here! I really wish it was, but it's not and that's probably my fault. It probably best to <a href={{ config.base_url }}>head back home</a> to try finding it again.</p>
+    {% include "partials/_footer.html" ignore missing %}
+  </div>
 </div>
-{% endblock content %}
+{% endblock body %}

@@ -1,0 +1,38 @@
+{% import "macros/social.html" as social %}
+{% block sidebar %}
+    <div class="sidebar">
+        <div class="container {% if config.extra.hyde_sticky %}sidebar-sticky{% endif %}">
+            <div class="sidebar-about">
+                {% block sidebar_about %}
+                    <a href="{{ config.base_url }}"><h1>{{ config.title }}</h1></a>
+                    {% if config.extra.hyde_sidebar_subtitle %}
+                    <p class="sidebar-subtitle">{{config.extra.hyde_sidebar_subtitle}}</p>
+                    {% endif %}
+                    {% if config.extra.hyde_sidebar_subtext %}
+                    <p class="sidebar-subtext">{{config.extra.hyde_sidebar_subtext}}</p>
+                    {% endif %}
+                {% endblock sidebar_about %}
+            </div>
+
+            <ul class="sidebar-nav">
+                {% block sidebar_nav %}
+                {% for link in config.extra.hyde_links %}
+                <li class="sidebar-nav-item {% if current_path and current_path == link.url %} active{% endif %}"><a href="{{link.url}}">{{link.name}}</a></li>
+                {% endfor %}
+                {% endblock sidebar_nav %}
+            </ul>
+
+            <!-- Social Profiles-->
+            <ul class="sidebar-social">
+                {% block sidebar_social %}
+                {% for social_profile in config.extra.hyde_social_links %}
+                <li class="social-icon">{{ social::profile_link(social_service=social_profile.name, social_url=social_profile.url) }}</li>
+                {% endfor %}
+                {% endblock sidebar_social %}
+            </ul>
+
+            <!-- Copyright-->
+            {% include "partials/_copyright.html" ignore missing %}
+        </div>
+    </div>
+{% endblock sidebar %}

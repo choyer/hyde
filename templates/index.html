@@ -1,85 +1,13 @@
-{% import "macros/social.html" as social %}
-<!DOCTYPE html>
-<html lang="{{ lang }}">
-    <head>
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+{% extends "baseof.html" %}
 
-      <!-- Enable responsiveness on mobile devices-->
-      <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
+{% block body %}
+<div class="content container">
+    <div class="section">
+    
+    {% block content %}
+    {% endblock content %}
 
-      <title>{% block title %}{{ config.title }}{% endblock title %}</title>
-
-      <!-- CSS -->
-      <link rel="stylesheet" href="{{ get_url(path="print.css", trailing_slash=false) }}" media="print">
-      <link rel="stylesheet" href="{{ get_url(path="main.css", trailing_slash=false) }}">
-
-      {% if config.generate_feed %}
-        <link rel="alternate" type={% if config.feed_filename == "atom.xml" %}"application/atom+xml"{% else %}"application/rss+xml"{% endif %} title="RSS" href="{{ get_url(path=config.feed_filename) | safe }}">
-      {% endif %}
-
-      {% block extra_head %}
-      {% endblock extra_head %}
-    </head>
-
-    <body class="{{ config.extra.hyde_theme }} {% if config.extra.hyde_reverse %}layout-reverse{% endif %}">
-        {% block sidebar %}
-            <div class="sidebar">
-                <div class="container {% if config.extra.hyde_sticky %}sidebar-sticky{% endif %}">
-                    <div class="sidebar-about">
-                        {% block sidebar_about %}
-                            <a href="{{ config.base_url }}"><h1>{{ config.title }}</h1></a>
-                            {% if config.extra.hyde_sidebar_subtitle %}
-                            <p class="lead">{{config.extra.hyde_sidebar_subtitle}}</p>
-                            {% endif %}
-                            {% if config.extra.hyde_sidebar_subtext %}
-                            <p class="lead">{{config.extra.hyde_sidebar_subtext}}</p>
-                            {% endif %}
-                        {% endblock sidebar_about %}
-                    </div>
-
-                    <ul class="sidebar-nav">
-                        {% block sidebar_nav %}
-                        {% for link in config.extra.hyde_links %}
-                        <li class="sidebar-nav-item {% if current_path and current_path == link.url %} active{% endif %}"><a href="{{link.url}}">{{link.name}}</a></li>
-                        {% endfor %}
-                        {% endblock sidebar_nav %}
-                    </ul>
-
-                    <!-- Social Profiles-->                    
-                    <ul class="sidebar-social">
-                        {% block sidebar_social %}
-                        {% for social_profile in config.extra.hyde_social_links %}
-                        <li class="social-icon">{{ social::profile_link(social_service=social_profile.name, social_url=social_profile.url) }}</li>
-                        {% endfor %}
-                        {% endblock sidebar_social %}
-                    </ul>
-
-                    <!-- Copyright-->
-                    {% include "partials/_copyright.html" ignore missing %}
-                </div>
-            </div>
-        {% endblock sidebar %}
-
-        <div class="content container">
-            {% block content %}
-                <div class="posts">
-                    {% for page in section.pages | reverse %}
-                      <div class="post">
-                        <h1 class="post-title">
-                          <a href="{{ page.permalink }}">
-                            {{ page.title | safe }}
-                          </a>
-                        </h1>
-
-                        <span class="post-date">{{ page.date | date(format="%Y-%m-%d") }}</span>
-                      </div>
-                    {% endfor %}
-                </div>
-            {% endblock content %}
-        </div>
-
-    </body>
-
-</html>
+    {% include "partials/_footer.html" ignore missing %}
+  </div>
+</div>
+{% endblock body %}
