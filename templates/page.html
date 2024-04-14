@@ -1,7 +1,6 @@
-{% extends "baseof.html" %}
+{% extends "index.html" %}
 
-{% block body %}
-<div class="content container">
+{% block content %}
   <div class="post">
     <h1 class="post-title">{{ page.title }}</h1>
     <div class="post-meta">
@@ -17,6 +16,5 @@
     {{ page.content | safe }}
     {% include "partials/_footer.html" ignore missing %}
   </div>
-</div>
-{% endblock body %}
+{% endblock content %}
 

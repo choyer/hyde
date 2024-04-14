@@ -11,8 +11,17 @@
  * https://github.com/choyer/hyde.
  */
 
+/* Generalities */
+
+/* No flex for you */
 .flex-none {
 	flex: none;
+}
+
+/* vertical bar used as divider */
+.vert-bar-div {
+	padding-left: .7em;
+	padding-right: .7em;
 }
 
 /*
@@ -110,6 +119,18 @@
 
  .post hr {
  	margin-bottom: 1rem;
+ }
+
+ .post img {
+ 	border: .2rem solid #535353;
+ 	max-width: 140%;
+ }
+
+ .post li,
+ .section li {
+ 	padding-inline-start: 1.25ch;
+  margin-bottom: .25rem;
+ 	list-style-type: "—";
  }
 
 .post-meta {

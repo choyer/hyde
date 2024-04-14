@@ -1,7 +1,8 @@
 <div class="footer">
       {% if config.extra.ident_gpg_fingerprint %}
       <!-- GPG Fingerprint-->
-      <span class="gpg-fingerprint"><strong>GPG:</strong> {{ config.extra.ident_gpg_fingerprint }}</span>  | 
+      <span class="gpg-fingerprint"><strong>GPG:</strong> {{ config.extra.ident_gpg_fingerprint }}</span>  
+      <span class="vert-bar-div">|</span>
       {% endif %}
       <span class="build"><strong>Build:</strong> {{ now() | date(format="%Y%m%d%H%M%.3f") }}</span>
 </div>
