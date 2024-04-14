@@ -2,13 +2,12 @@
 
 {% block content %}
     <div class="taxonomy">
-        <h2>#{{ term.name }}</h2>
+        <h2><span class="taxonomy-pre-header">Articles about</span> <span class="hash">#</span>{{ term.name }}</h2>
         {% for page in term.pages %}
-            <div class="taxonomy__item">
-                <span class="taxonomy__item__time">{{ page.date | date(format="%F") }}</span>
-                <span class="taxonomy__item__title">
-                    <a href="{{ page.permalink }}">{{ page.title }}</a>
-                </span>
+            <div class="archive-post">
+                <a class="flex-none" href="{{ page.permalink | safe }}">{{ page.title }}</a>
+                <div class="archive-spacer"></div>
+                <div class="archive-date">{{ page.date | date(format="%b %d, %Y") }}</div>
             </div>
         {% endfor %}
     </div>

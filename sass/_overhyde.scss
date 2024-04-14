@@ -104,13 +104,31 @@
  */
 
 .footer {
-	background-color: white;
+	background-color: #fffcf9;;
  	position: fixed;
-    bottom: 0px;
-    padding: 10px 15px;
-    height: 40px;
-    font-size: 12px;
-    width: 38rem;
+  bottom: 0px;
+  padding: 10px 15px;
+  height: 40px;
+  font-size: 12px;
+  width: 38rem;
+ }
+
+.navtop-container {
+	margin-top: 2rem;
+}
+
+.navtop-container::before {
+	content: "——";
+	color: rgba(188, 188, 188, 1);
+	letter-spacing: -.25em;
+}
+
+ .navtop {
+ 	font-size: .9rem;
+ }
+
+ .navtop-prefix {
+ 	color: #000;
  }
 
 /*
@@ -122,7 +140,7 @@
  }
 
  .post img {
- 	border: .2rem solid #535353;
+ 	border: .125rem solid #535353;
  	max-width: 140%;
  }
 
@@ -150,8 +168,23 @@
  }
 
   .post-tags {
-  	margin-left: 1rem;
+  margin-left: 1rem;
  	font-size: .8rem;
+ }
+
+
+/*
+ * Taxonomies
+ *
+ * Unique styling for the taxonomy pages
+ */
+
+ .taxonomy .taxonomy-pre-header {
+ 	color: rgba(0, 0, 0, .4);
+ }
+
+ .taxonomy .hash {
+ 	color: rgba(172, 65, 66, .75);
  }
 
  /*
