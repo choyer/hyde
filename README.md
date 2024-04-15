@@ -17,18 +17,37 @@ Hyde is a brazen two-column [Zola](https://github.com/getzola/zola) based on the
   - [Themes](#themes)
   - [Reverse layout](#reverse-layout)
 
+
 ## Installation
-First download this theme to your `themes` directory:
+First download this theme to your `themes` directory using one of the options based on your use-case:
+
+### Option 1 - Clone
+
+If you want to manage it as part of YOUR code base, make your own modifications and put it under your own source code management then this is a good choice.
 
 ```bash
 cd themes
 git clone https://github.com/choyer/hyde
 ```
-and then enable it in your `config.toml`:
+
+
+### Option 2 - Submodule
+
+If you want to be able to easily pull updates from this repo
+
+```bash
+cd <Zola root dir>
+git submodule add https://github.com/choyer/hyde themes/hyde
+```
+
+### Enable the Theme
+
+Enable it in your `config.toml`:
 
 ```toml
 theme = "hyde"
 ```
+
 
 ## Differentia
 
@@ -41,10 +60,11 @@ Main differences from the original [Zola port](https://github.com/getzola/hyde) 
 - Ability to define sidebar subtext via `hyde_sidebar_subtext = ""` in main `config.toml`
 - Ability to define sidebar 3rd party social profile links via `hyde_social_links = []` in main `config.toml` ([see example](#social-links-example))
 - Ability to show sidebar copyright via `hyde_copyright = true`, define copyright license via `hyde_copyright_license = "licensed under CC BY 4.0"` and define copyright license link via `hyde_copyright_license_link = "https://creativecommons.org/licenses/by/4.0/"`
+- Icons via an SVG sprite with [documented workflow](#svg-sprite-workflow)
 
 ### Social Links example
 
-3rd party social profile links, displayed using [Simple Icons](https://simpleicons.org/) within the Sidebar, can be defined in the sites `config.toml` via:
+3rd party social profile links, displayed as icons within the Sidebar, can be defined in the sites `config.toml` via:
 
 ```toml
 [extra]
@@ -54,7 +74,23 @@ hyde_social_links = [
 ```
 
 > [!TIP]
-> I've included some of the most popular social service icons. To add others simply download additional icons from the [Simple Icons ](https://simpleicons.org/) website and place them in the themes `/static/simple-icons/` directory. The name used in the config file should match the svg filename (without the .svg).
+> I've included some of the most popular social service icons. To add your own following the instructions provided in the [SVG Sprite Workflow](#svg-sprite-workflow) section.
+
+### SVG Sprite Workflow
+
+> [!WARNING]
+> Not fully implemented. Still considering my options and whether using a sprite is the best approach. See [External SVGs that you can style](https://dev.to/javar/external-svgs-that-you-can-style-2a37) and [Which SVG technique performs best for way too many icons?](https://cloudfour.com/thinks/svg-icon-stress-test/)
+
+Icons (social, etc.) can be delivered by a single SVG sprite. A basic set of social service from [Simple Icons ](https://simpleicons.org/) is provided.
+
+To add others simply download additional icons from the [Simple Icons ](https://simpleicons.org/) website or any other svg icon source (e.g. Bootstrap Icons) and place them in the themes `/static/icons/src` directory.
+
+To **generate the SVG sprite** you can either use an online tool like [Fontastic](https://fontastic.me/) or a CLI like [Yesvgmap](https://github.com/Blobfolio/yesvgmap).
+
+To use `yesvgmap`:
+
+`yesvgmap -o static/icons/icons.svg -l themes/hydes/static/icons/src/spritelist.txt`
+
 
 ## Options
 

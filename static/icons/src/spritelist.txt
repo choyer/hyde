@@ -1,0 +1,9 @@
+discord.svg
+github.svg
+gitlab.svg
+keybase.svg
+liberadotchat.svg
+liberapay.svg
+mastodon.svg
+rss.svg
+stackoverflow.svg
