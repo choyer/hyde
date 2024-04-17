@@ -40,6 +40,13 @@ cd <Zola root dir>
 git submodule add https://github.com/choyer/hyde themes/hyde
 ```
 
+To update the theme to a later version:
+
+```bash
+cd <Zola root dir>
+git submodule update --recursive --remote
+```
+
 ### Enable the Theme
 
 Enable it in your `config.toml`:

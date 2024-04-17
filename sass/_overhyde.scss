@@ -181,6 +181,25 @@
  	font-size: .8rem;
  }
 
+ .post-list {
+	margin-bottom: .5rem;
+	overflow: auto;
+	display: flex;
+	font-size: .9rem;
+}
+
+.post-date {
+	flex: none;
+	margin-right: 1em;
+}
+
+.post-read-time {
+	margin-left: 1em;
+}
+
+.post-read-time .postfix {
+	color: #9a9a9a;
+}
 
 /*
  * Taxonomies

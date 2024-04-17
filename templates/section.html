@@ -4,5 +4,15 @@
 <div class="section">
     {% if section.title %}<h1 class="section-title">{{ section.title }}</h1>{% endif %}
     {{ section.content | safe }}
+
+    {% if section.title == "Writings" %}
+    {% for post in section.pages %}
+      <div class="post-list">
+        <div class="post-date">{{ post.date | date(format="%b %Y") }}</div>
+        <a class="flex-none" href="{{ post.permalink | safe }}">{{ post.title }}</a>
+        <div class="post-read-time">{{ post.reading_time }} <span class="postfix">min read</span></div>
+      </div>
+    {% endfor %}
+    {% endif %}
 </div>
 {% endblock content %}
