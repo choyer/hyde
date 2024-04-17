@@ -24,6 +24,15 @@
 	padding-right: .7em;
 }
 
+.back {
+	margin-bottom: 1em;
+	font-size: .9em;
+}
+
+.back-prefix {
+	color: black;
+}
+
 /*
  * Sidebar
  *
@@ -139,7 +148,7 @@
  	margin-bottom: 1rem;
  }
 
- .post img {
+ .post img.breakout {
  	border: .125rem solid #535353;
  	max-width: 140%;
  }
