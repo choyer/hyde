@@ -1,18 +1,38 @@
-{% extends "index.html" %}
+{% import "macros/list_posts.html" as macros_list_posts %}
+{% extends "base.html" %}
+
+{% block body %}
+
+<!-- Sidebar -->
+{% include "partials/_sidebar.html" %}
 
 {% block content %}
-<div class="section">
-    {% if section.title %}<h1 class="section-title">{{ section.title }}</h1>{% endif %}
-    {{ section.content | safe }}
+<main>
+    <div class="content container">
 
-    {% if section.title == "Writings" %}
-    {% for post in section.pages %}
-      <div class="post-list">
-        <div class="post-date">{{ post.date | date(format="%b %Y") }}</div>
-        <a class="flex-none" href="{{ post.permalink | safe }}">{{ post.title }}</a>
-        <div class="post-read-time">{{ post.reading_time }} <span class="postfix">min read</span></div>
-      </div>
-    {% endfor %}
-    {% endif %}
-</div>
+    {%- if section.extra.header %}
+        {%- include "partials/_home_banner.html" -%}
+    {% else %}
+        <h1>{{ section.title }}</h1>
+        {{ section.content | safe }}
+    {% endif -%}
+
+    {% if section.extra.section_path -%}
+        {% set extra_section = get_section(path=section.extra.section_path) %}
+    {% endif -%}
+
+    {% if section.extra.section_path -%}
+        {% set path = section.extra.section_path | replace(from="/_index.md", to = "") %}
+    {% else -%}
+        {% set path = section.path | default(value="blog\_index.md") %}
+    {% endif -%}
+
+    {%- if extra_section.pages -%}
+        {% include "partials/_main_page_posts_list.html" %}
+    {%- endif -%}
+
+    {% include "partials/_footer.html" ignore missing %}
+    </div>
+</main>
 {% endblock content %}
+{% endblock body %}

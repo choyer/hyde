@@ -1,0 +1,19 @@
+{% import "macros/format_date.html" as macros_format_date %}
+{% import "macros/rel_attributes.html" as macros_rel_attributes %}
+{% import "macros/settings.html" as macros_settings %}
+{% import "macros/social.html" as macros_social %}
+{% import "macros/table_of_contents.html" as macros_toc %}
+
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+
+    {% include "partials/_head.html" %}
+
+    <body class="{{ config.extra.hyde_theme }} {% if config.extra.hyde_reverse %}layout-reverse{% endif %}">
+      <!-- Body -->
+      {% block body %}
+        Nothing to see here!
+      {% endblock body %}
+    </body>
+
+</html>

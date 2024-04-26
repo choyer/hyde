@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('../webfonts/ptsans-regular-webfont.woff2') format('woff2');
+  src: url('/webfonts/ptsans-regular-webfont.woff2') format('woff2');
 }
 
 @font-face {
@@ -11,7 +11,7 @@
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url('../webfonts/ptsans-italic-webfont.woff2') format('woff2');
+  src: url('/webfonts/ptsans-italic-webfont.woff2') format('woff2');
 }
 
 @font-face {
@@ -19,5 +19,37 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('../webfonts/abrilfatface-regular-webfont.woff2') format('woff2');
+  src: url('/webfonts/abrilfatface-regular-webfont.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/webfonts/SourceCodePro-Regular.otf.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/webfonts/SourceCodePro-It.otf.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/webfonts/SourceCodePro-Bold.otf.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/webfonts/SourceCodePro-BoldIt.otf.woff2') format('woff2');
 }

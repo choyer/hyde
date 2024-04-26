@@ -1,4 +1,11 @@
-{% import "macros/social.html" as social %}
+{%- set separator = config.extra.separator | default(value="•") -%}
+{%- set rel_attributes = macros_rel_attributes::rel_attributes() | trim -%}
+
+{%- if config.markdown.external_links_target_blank -%}
+    {%- set blank_target = "target=_blank" -%}
+{%- else -%}
+    {%- set blank_target = "" -%}
+{%- endif -%}
 {% block sidebar %}
     <div class="sidebar">
         <div class="container {% if config.extra.hyde_sticky %}sidebar-sticky{% endif %}">
@@ -16,8 +23,25 @@
 
             <ul class="sidebar-nav">
                 {% block sidebar_nav %}
-                {% for link in config.extra.hyde_links %}
-                <li class="sidebar-nav-item {% if current_path and current_path == link.url %} active{% endif %}"><a href="{{link.url}}">{{link.name}}</a></li>
+                {% set current_url = current_path | trim_end_matches(pat="/") %}
+                {% for menu in config.extra.hyde_links %}
+                <li class="sidebar-nav-item {% if current_url == menu.url %} active{% endif %}">
+                    {%- set trailing_slash = menu.trailing_slash | default(value=true) -%}
+
+                    {%- if menu.url == "sitemap.xml" -%}
+                        {%- set url = get_url(path=menu.url, trailing_slash=trailing_slash) -%}
+                    {%- elif menu.url is starting_with("http") -%}
+                        {%- if menu.trailing_slash -%}
+                            {%- set url = menu.url ~ "/" -%}
+                        {%- else -%}
+                            {%- set url = menu.url -%}
+                        {%- endif -%}
+                    {%- else -%}
+                        {%- set url = get_url(path=menu.url, lang=lang, trailing_slash=trailing_slash) -%}
+                    {%- endif -%}
+
+                    <a href="{{ url }}">{{ menu.name }}</a>
+                </li>
                 {% endfor %}
                 {% endblock sidebar_nav %}
             </ul>
@@ -25,14 +49,57 @@
             <!-- Social Profiles-->
             <ul class="sidebar-social">
                 {% block sidebar_social %}
-                {% for social_profile in config.extra.hyde_social_links %}
-                <li class="social-icon">{{ social::profile_link(social_service=social_profile.name, social_url=social_profile.url) }}</li>
+                {# Mail icon #}
+                    {%- if config.extra.identity.email -%}
+                        {%- set email_already_encoded = (config.extra.identity.email is not containing("@")) -%}
+                        {%- set email_needs_decoding = email_already_encoded or config.extra.identity.encode_plaintext_email -%}
+
+                        {%- if email_already_encoded -%}
+                            {%- set encoded_email = config.extra.identity.email -%}
+                            {# Verify the pre-encoded e-mail is valid (i.e. contains an '@') #}
+                            {%- set decoded_email = encoded_email | base64_decode -%}
+                            {{ throw(message="DEBUG: encoded_email = " ~ encoded_email)}}
+                            {%- if '@' not in decoded_email -%}
+                                {{ throw(message="ERROR: The provided e-mail appears to be base64-encoded, but does not decode to a valid e-mail address.")}}
+                            {%- endif -%}
+                        {%- elif config.extra.identity.encode_plaintext_email -%}
+                            {%- set encoded_email = config.extra.identity.email | base64_encode -%}
+                        {%- endif -%}
+
+                        <li class="social-icon {% if email_needs_decoding %}js{% endif %}">
+                            {%- if email_needs_decoding -%}
+                                <a href="#" data-encoded-email="{{ encoded_email | safe }}">
+                            {%- else -%}
+                                <a href="mailto:{{ config.extra.identity.email | safe }}">
+                            {%- endif -%}
+                                <img alt="email" title="email" height="32" width="32" src="{{ get_url(path='icons/src/envelope-at-fill.svg') }}">
+                            </a>
+                        </li>
+                    {%- endif -%}
+                {% for social in config.extra.hyde_social_links %}
+                <li class="social-icon">
+                    <a rel="{{ rel_attributes }} me" {{ blank_target }} href="{{social.url | safe}}"><img alt="{{ social.name }}" height="32" width="32" src="{{ get_url(path="/icons/src/" ~ social.name ~ ".svg") }}" /></a>
+                </li>
                 {% endfor %}
                 {% endblock sidebar_social %}
             </ul>
 
             <!-- Copyright-->
-            {% include "partials/_copyright.html" ignore missing %}
+            <div class="credits">
+                <small>
+                    {% include "partials/_copyright.html" %}
+
+                    {# Shows link to remote repository #}
+                    {%- if config.extra.remote_repository_url and config.extra.show_remote_source | default(value=true) -%}
+                            <a rel="{{ rel_attributes }}" {{ blank_target }} href="{{ config.extra.remote_repository_url }}">~\view_site_source</a>
+                    {%- endif -%}
+                </small>
+            </div>
         </div>
     </div>
+
+    {# Load the decoding script if email is encoded #}
+    {%- if email_needs_decoding -%}
+        <script src="{{ get_url(path='js/decodeMail.min.js') }}" async></script>
+    {%- endif -%}
 {% endblock sidebar %}

@@ -1,0 +1,27 @@
+{% macro list_posts(posts, max, list_style="compact", meta=false, group_by="year", section_path="blog") %}
+{# TODO: implement list_style, meta, group_by #}
+
+<div class="archive">
+{% for year, post in posts | group_by(attribute="year") %}
+    <h3>{{ year }}</h3>
+
+    <ul class="post-list">
+    {% for post in posts %}
+        {% if post.date | date(format="%Y") == year %}
+            {% if loop.index <= max %}
+            <li class="post-item">
+                <div class="meta">
+                    <time class="dt-published" datetime="{{ post.date | date(format="%+") }}" itemprop="datePublished" property="datePublished">{{ post.date | date(format="%Y-%m-%d") }}</time>
+                </div>
+                <span>
+                    <a href="{{ post.permalink | safe }}">{{ post.title }}</a>
+                </span>
+            </li>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    </ul>
+{% endfor %}
+</div>
+
+{% endmacro %}

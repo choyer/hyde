@@ -1,12 +1,14 @@
+{%- if config.extra.quick_navigation_buttons -%}
 <div class="navtop-container">
       <div class="navtop"><a href="#top"><span class="navtop-prefix">^</span> Top</a> &#9782;</div>
 </div>
+{%- endif -%}
 <footer class="footer">
-      {% if config.extra.ident_gpg_fingerprint %}
+      {%- if config.extra.identity.gpg_fingerprint -%}
       <!-- GPG Fingerprint-->
-      <span class="gpg-fingerprint"><strong>GPG:</strong> {{ config.extra.ident_gpg_fingerprint }}</span>  
+      <span class="gpg-fingerprint"><strong>GPG:</strong> {{ config.extra.identity.gpg_fingerprint }}</span>  
       <span class="vert-bar-div">|</span>
-      {% endif %}
+      {%- endif -%}
       <!-- Site Build -->
       <span class="build"><strong>Build:</strong> {{ now() | date(format="%Y%m%d%H%M%.3f") }}</span>
 </footer>

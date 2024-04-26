@@ -1,0 +1,63 @@
+{#
+    SHORTCODE [yt]
+
+    Lazy Loading Youtube Embed
+
+    PARAMETERS: 
+          ytid [string] = "dQw4w9WgXcQ"
+          title [string] = "Title of the Video"
+          show_src [bool] = true (default) | false
+
+    USAGE: yt(ytid="dQw4w9WgXcQ", title="Never Gonna Give You Up", optional[show_src=false])
+    NOTES: default is to show source link under video
+
+    CREDITS: https://chrispennington.blog/blog/lazy-load-youtube-embed-with-custom-poster/
+#}
+
+{# Default to show source link if not defined #}
+{% if show_src is undefined %}{% set show_src = true %}{% endif %}
+
+<div class="yt-container">
+    <div class="yt-inner-container">
+      <iframe
+        class="yt-iframe"
+        loading="lazy";
+        srcdoc="<style>
+          * {
+          padding: 0;
+          margin: 0;
+          overflow: hidden;
+          }
+          body, html {
+            height: 100%;
+          }
+          img, svg {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+          }
+          svg {
+            filter: drop-shadow(1px 1px 10px hsl(206.5, 70.7%, 8%));
+            transition: all 250ms ease-in-out;
+          }
+          body:hover svg {
+            filter: drop-shadow(1px 1px 10px hsl(206.5, 0%, 10%));
+            transform: scale(1.2);
+          }
+        </style>
+        <a href='https://www.youtube.com/embed/{{ ytid }}?autoplay=1'>
+          <img src='https://img.youtube.com/vi/{{ ytid }}/hqdefault.jpg' alt='{{ title }}'>
+          <svg xmlns='http://www.w3.org/2000/svg' width='128' height='128' viewBox='0 0 16 16' fill='#ffffff' stroke='#ffffff' class='bi bi-play-fill'><path d='m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393'/></svg>
+        </a>
+        "
+        src="https://www.youtube.com/embed/{{ ytid }}"
+        title="{{ title }}"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+</div>
+{% if show_src %}<p class="yt-src-link">Source: <a href='https://www.youtube.com/embed/{{ ytid }}?autoplay=1'>https://www.youtube.com/embed/{{ ytid }}</a></p>{% endif %}

@@ -1,0 +1,25 @@
+:root {
+    --max-layout-width: 1000px;
+    --normal-layout-width: 600px;
+    --medium-layout-width: 400px;
+    --small-layout-width: 200px;
+    --paragraph-spacing: max(2.3vmin, 24px);
+
+    --sans-serif-font: 'PT Sans', Helvetica, Arial, sans-serif;
+    --serif-font: 'Source Serif', 'Georgia', serif;
+    --code-font: 'Source Code Pro';
+
+    --background-color: white;
+    --bg-0: #f0f0f0;
+    --bg-1: #e7e7e7;
+    --bg-2: #fefefe;
+    --bg-3: #d8dcdd;
+    --primary-color: rgba(172, 65, 66, 0.9);
+    --divider-color: #d7d7d7;
+    --text-color: #222226;
+    --text-color-high-contrast: #313333;
+    --meta-color: #5b5b65;
+    --codeblock-bg: #26232e;
+    --codeblock-highlight: #383444;
+    --hover-color: rgba(255, 255, 255, 0.8);
+}

@@ -1,0 +1,3 @@
+{%- set pages = extra_section.pages -%}
+{% set max_posts = section.extra.max_posts | default(value=999999) %}
+{{ macros_list_posts::list_posts(posts=pages, max=max_posts, section_path=path) }}

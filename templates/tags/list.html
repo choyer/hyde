@@ -1,17 +1,30 @@
 {% extends "index.html" %}
 
 {% block content %}
-    <div class="taxonomies">
-        <div class="taxonomies-title">
-            {{ terms | length }} tags in total
-        </div>
-        <div class="taxonomies-items">
-            {% for tag in terms %}
-                <a href="{{ tag.permalink }}">
-                    {{ tag.name }}
-                    <span class="count">{{ tag.pages | length }}</span>
-                </a>
-            {% endfor %}
-        </div>
-    </div>
+
+{% set tag_count = terms | length %}
+<div id="tag-cloud" class="{% if tag_count > 16 %}three-columns{% elif tag_count > 8 %}two-columns{% endif %}">
+    <ul class="tags">
+        {%- for term in terms -%}
+            <li class="tags-item">
+                {%- set number_of_posts = term.pages | length -%}
+                {% if config.extra.compact_tags %}
+                    {# Shows the number of posts per tag as a superscript #}
+                    <a href="{{ term.permalink | safe }}"
+                       aria-label="{{ term.name }} –
+                        {{ term.pages | length }}
+                        Posts
+                    ">
+                        {{ term.name }}
+                    </a> <sup>{{ number_of_posts }}</sup>
+                {% else %}
+                    <a href="{{ term.permalink | safe }}">
+                        {{ term.name }} </a>
+                    <span> – </span>
+                    Number of posts
+                {% endif %}
+            </li>
+        {%- endfor -%}
+    </ul>
+</div>
 {% endblock content %}

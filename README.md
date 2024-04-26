@@ -1,5 +1,5 @@
 > [!NOTE]
-> This is my personalized fork of [Zola's port of the Hyde theme](https://github.com/getzola/hyde) originally created by [Mark Otto](https://github.com/mdo) as a [Poole Jekyll Theme](https://github.com/poole/hyde). See the changes I've made in the [Differentia](#differentia) section below.
+> This is my personalized fork of [Zola's port of the Hyde theme](https://github.com/getzola/hyde) originally created by [Mark Otto](https://github.com/mdo) as a [Poole Jekyll Theme](https://github.com/poole/hyde). See the changes I've made in the [Differentia](#differentia) section below. I haven't really flushed things out to be it's own standalone theme. **YMMV in it's use!**
 
 # hyde
 Hyde is a brazen two-column [Zola](https://github.com/getzola/zola) based on the Jekyll theme of the same name that pairs a prominent sidebar with uncomplicated content.
@@ -60,14 +60,27 @@ theme = "hyde"
 
 Main differences from the original [Zola port](https://github.com/getzola/hyde) include:
 
-- Sidebar navigation call-out of current active page (like the original Jekyll Hyde theme)
+- Includes many [tabi](https://github.com/welpo/tabi) by Óscars' amazing theme features, including:
+    - Integration with remote repositories on GitHub, GitLab, Gitea & Codeberg for commit history and showing the site source.
+    - Support for comments using giscus only.
+    - Mail encoding for spam protection.
+    - All JavaScript can be fully disabled.
+    - Customizable Table of Contents.
+    - Analytics via goatcounter, unami, plausible
+    - Customizable secure headers.
+    - Copy button for code blocks.
+    - Quick navigation buttons.
+    - Custom copyright notice.
+    - Plus many other behind the scenes features.
+- Sidebar navigation highlights the current active page (like the original Jekyll Hyde theme)
 - Combined styles into a single stylesheet
-- Privacy focused no tracking or CDN references. Locally hosted webfonts
+- Privacy focused no tracking or CDN references.
+- Locally hosted webfonts
 - Ability to define sidebar subtitle via `hyde_sidebar_subtitle = ""` in main `config.toml`
 - Ability to define sidebar subtext via `hyde_sidebar_subtext = ""` in main `config.toml`
 - Ability to define sidebar 3rd party social profile links via `hyde_social_links = []` in main `config.toml` ([see example](#social-links-example))
 - Ability to show sidebar copyright via `hyde_copyright = true`, define copyright license via `hyde_copyright_license = "licensed under CC BY 4.0"` and define copyright license link via `hyde_copyright_license_link = "https://creativecommons.org/licenses/by/4.0/"`
-- Icons via an SVG sprite with [documented workflow](#svg-sprite-workflow)
+- SVG icons with the option of generating a sprite with [documented workflow](#svg-sprite-workflow)
 
 ### Social Links example
 
@@ -86,7 +99,7 @@ hyde_social_links = [
 ### SVG Sprite Workflow
 
 > [!WARNING]
-> Not fully implemented. Still considering my options and whether using a sprite is the best approach. See [External SVGs that you can style](https://dev.to/javar/external-svgs-that-you-can-style-2a37) and [Which SVG technique performs best for way too many icons?](https://cloudfour.com/thinks/svg-icon-stress-test/)
+> **ON HOLD!** Not fully implemented. Still considering my options and whether using a sprite is the best approach. See [External SVGs that you can style](https://dev.to/javar/external-svgs-that-you-can-style-2a37) and [Which SVG technique performs best for way too many icons?](https://cloudfour.com/thinks/svg-icon-stress-test/)
 
 Icons (social, etc.) can be delivered by a single SVG sprite. A basic set of social service from [Simple Icons ](https://simpleicons.org/) is provided.
 

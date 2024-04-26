@@ -1,0 +1,95 @@
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="base" content="{{ config.base_url | safe }}">
+
+    <!-- Enable responsiveness on mobile devices-->
+    <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
+
+    <title>{%- include "partials/_title.html" -%}</title>
+
+    {# Favicon #}
+    {% if config.extra.favicon %}
+        <link rel="icon" type="image/png" href="{{ get_url(path=config.extra.favicon) }}"/>
+    {% endif %}
+
+    {#- RSS Feed -#}
+    {%- if config.generate_feed -%}
+      <link rel="alternate" type={% if config.feed_filename == "atom.xml" %}"application/atom+xml"{% else %}"application/rss+xml"{% endif %} title="RSS" href="{{ get_url(path=config.feed_filename) | safe }}">
+    {%- endif -%}
+
+    {# Description based on page | section | etc. #}
+    {%- if page.description %}
+        <meta name="description" content="{{ page.description }}" />
+        <meta property="og:description" content="{{ page.description }}" />
+    {%- elif section.description %}
+        <meta name="description" content="{{ section.description }}" />
+        <meta property="og:description" content="{{ section.description }}" />
+    {%- elif page.summary %}
+        <meta name="description" content="{{ page.summary | striptags | safe | trim_end_matches(pat=".") }}…" />
+        <meta property="og:description" content="{{ page.summary | striptags | safe | trim_end_matches(pat=".") }}…" />
+    {%- else %}
+        <meta name="description" content="{{ config.description }}" />
+        <meta property="og:description" content="{{ config.description }}" />
+    {%- endif %}
+
+    {% if is_404 %}
+        <meta name="robots" content="noindex, follow" />
+    {% else %}
+        <meta name="robots" content="index, nofollow" />
+    {% endif %}
+
+    <meta property="og:title" content="{{ page.title | default(value=config.title) | safe }}" />
+    <meta property="og:type" content="article" />
+
+    <!-- Stylesheets -->
+    {# Define array of CSS files to load. main.css is always loaded. #}
+    {%- set stylesheets = [ "main.css" ] -%}
+
+    {# Load extra CSS files from config.toml #}
+    {%- if config.extra.stylesheets -%}
+        {%- set stylesheets = stylesheets | concat(with=config.extra.stylesheets) -%}
+    {%- endif -%}
+
+    {# Load extra CSS files from page metadata #}
+    {%- if page.extra.stylesheets -%}
+        {%- set stylesheets = stylesheets | concat(with=page.extra.stylesheets) -%}
+    {%- endif -%}
+    
+    {#- Load all stylesheets -#}
+    {%- for stylesheet in stylesheets %}
+        <link rel="stylesheet" href="{{ get_url(path=stylesheet, cachebust=true) | safe }}" />
+    {%- endfor %}
+
+    {#- Content Security Policy (CSP) -#}
+    {%- if macros_settings::evaluate_setting_priority(setting="enable_csp", page=page | default(value=""), section=section | default(value=""), default_global_value="true") == "true" -%}
+        {%- include "partials/_content_security_policy.html" -%}
+    {%- endif -%}
+
+    {# Site Analytics #}
+    {%- if config.extra.analytics.service -%}
+        {%- include "partials/_analytics.html" -%}
+    {%- endif -%}
+
+    {#- Search -#}
+    {%- if config.build_search_index -%}
+        {%- if config.search.index_format -%}
+            {%- set search_index_format = config.search.index_format -%}
+        {%- elif config.extra.index_format -%}
+            {# Necessary to support Zola 0.17.X, as it doesn't have access to config.search.index_format #}
+            {# See: https://github.com/getzola/zola/issues/2165 #}
+            {%- set search_index_format = config.extra.index_format -%}
+        {%- else -%}
+            {%- set search_index_format = "elasticlunr_json" -%}
+        {%- endif -%}
+
+        {%- if search_index_format == "elasticlunr_javascript" -%}
+            <script defer src="{{ get_url(path='search_index.' ~ lang ~ '.js', cachebust=true) | safe }}"></script>
+        {%- endif -%}
+
+        {# Main search script #}
+        <script defer src="{{ get_url(path='js/searchElasticlunr.min.js', cachebust=true) | safe }}"></script>
+
+    {%- endif -%}
+</head>

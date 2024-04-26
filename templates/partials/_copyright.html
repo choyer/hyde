@@ -1,9 +1,32 @@
-{% if config.extra.hyde_copyright %}
-<p class="copyright">&copy;{{ now() | date(format="%Y") }}. 
-    {% if config.extra.hyde_copyright_license_text and config.extra.hyde_copyright_license_link %}
-        <a href="{{ config.extra.hyde_copyright_license_link }}" target="_blank">{{ config.extra.hyde_copyright_license_text }}</a>
-    {% elif config.extra.hyde_copyright_license_text %}
-        {{ config.extra.hyde_copyright_license_text }}
+{%- if config.extra.copyright -%}
+    {% set copyright = config.extra.copyright %}
+
+    {# Check for missing variables in the notice #}
+    {% set copyright_placeholders = ["$AUTHOR", "$TITLE"] %}
+    {% set missing_vars = [] %}
+    {% for placeholder in copyright_placeholders %}
+        {% if placeholder in copyright %}
+            {# Attempt to retrieve the corresponding variable by trimming the $ sign and converting to lowercase #}
+            {% set var_name = placeholder | replace(from="$", to="") | lower %}
+            {% if not config[var_name] %}
+                {# Append the variable name to the list of missing variables #}
+                {% set_global missing_vars = missing_vars | concat(with=var_name) %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {% if missing_vars | length > 0 %}
+        {% set missing_vars_str = missing_vars | join(sep=", ") %}
+        {{ throw(message="ERROR: The following variables are included in `copyright` but have not been set in the config.toml: " ~ missing_vars_str) }}
     {% endif %}
-    </p>
-{% endif %}
+
+    {# At this point, we know that all variables needed defined, so we can safely override the missing ones #}
+    {% set author = config.author | default(value="") %}
+    {% set title = config.title | default(value="") %}
+    {% set separator = extra.separator | default(value="") %}
+
+    {# Render the copyright notice, replacing the variables #}
+    {% set current_year = now() | date(format="%Y") %}
+    
+    {{ copyright | replace(from="$AUTHOR", to=author) | replace(from="$TITLE", to=title) | replace(from="$CURRENT_YEAR", to=current_year) | replace(from="$SEPARATOR", to=separator) | markdown | safe }}
+{%- endif -%}
