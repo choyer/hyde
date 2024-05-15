@@ -49,7 +49,7 @@ body {
 }
 
 html {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.5;
 }
@@ -80,8 +80,10 @@ a:focus {
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
-  font-weight: bold;
-  line-height: 1.25;
+  font-weight: 400;
+  font-family: var(--font-serif);
+  letter-spacing: -.01em;
+  line-height: 1.2;
   color: #313131;
   text-rendering: optimizeLegibility;
 }
@@ -89,7 +91,7 @@ h1 {
   font-size: 2rem;
 }
 h2 {
-  margin-top: 1rem;
+  margin-top: 1.75rem;
   font-size: 1.5rem;
 }
 h3 {
@@ -97,7 +99,7 @@ h3 {
   font-size: 1.25rem;
 }
 h4, h5, h6 {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   font-size: 1rem;
 }
 
@@ -195,7 +197,7 @@ tbody tr:nth-child(odd) th {
 
 .lead {
   font-size: 1.25rem;
-  font-weight: 300;
+  font-family: var(--font-serif);
 }
 
 
@@ -335,7 +337,7 @@ tbody tr:nth-child(odd) th {
   overflow: hidden; /* clearfix */
   margin-left: -1rem;
   margin-right: -1rem;
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-family: var(--font-sans);
   color: #ccc;
   text-align: center;
 }

@@ -15,14 +15,6 @@
 }
 
 @font-face {
-  font-family: 'Abril Fatface';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/webfonts/abrilfatface-regular-webfont.woff2') format('woff2');
-}
-
-@font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
@@ -52,4 +44,12 @@
   font-weight: 700;
   font-display: swap;
   src: url('/webfonts/SourceCodePro-BoldIt.otf.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Immortel Infra G2';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/webfonts/Immortel-Infra-G2-Roman-205TF.woff2') format('woff2');
 }
